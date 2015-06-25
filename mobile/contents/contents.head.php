@@ -71,6 +71,7 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
                 <?php } else { ?>
                 <li><a href="<?php echo G5_BBS_URL; ?>/login.php?url=<?php echo $urlencode; ?>"><b>로그인</b></a></li>
                 <?php } ?>
+                <li><a href="<?php echo G5_BBS_URL; ?>/qalist.php">1:1문의</a></li>
                 <?php if($setting['de_cash_charge_use']) { ?>
                 <li><a href="<?php echo G5_CONTENTS_URL; ?>/cashform.php">캐시충전</a></li>
                 <?php } ?>
@@ -81,7 +82,7 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
                     $com_name = '커뮤니티';
 
                     if($setting['de_contents_layout_use']) {
-                        if(!preg_match('#'.G5_CONTENTS_DIR.'/#', $_SERVER['PHP_SELF'])) {
+                        if(!preg_match('#'.G5_CONTENTS_DIR.'/#', $_SERVER['SCRIPT_NAME'])) {
                             $com_href = G5_CONTENTS_URL;
                             $com_name = '컨텐츠몰';
                         }

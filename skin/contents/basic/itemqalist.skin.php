@@ -9,9 +9,9 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_CONTENTS_SKIN_URL.'/style.css"
 
 <!-- 전체 상품 문의 목록 시작 { -->
 
-<form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+<form method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <div id="cqa_sch">
-    <a href="<?php echo $_SERVER['PHP_SELF']; ?>">전체보기</a>
+    <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>">전체보기</a>
     <label for="sfl" class="sound_only">검색항목<strong class="sound_only"> 필수</strong></label>
     <select name="sfl" id="sfl" required class="required">
         <option value="">선택</option>
@@ -46,20 +46,20 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_CONTENTS_SKIN_URL.'/style.css"
             $iq_subject .= ' <img src="'.G5_CONTENTS_SKIN_URL.'/img/icon_secret.gif" alt="비밀글">';
 
             if($is_admin || $member['mb_id' ] == $row['mb_id']) {
-                $iq_question = get_view_thumbnail($row['iq_question'], $thumbnail_width);
+                $iq_question = get_view_thumbnail(conv_content($row['iq_question'], 1), $thumbnail_width);
             } else {
                 $iq_question = '비밀글로 보호된 문의입니다.';
                 $is_secret = true;
             }
         } else {
-            $iq_question = get_view_thumbnail($row['iq_question'], $thumbnail_width);
+            $iq_question = get_view_thumbnail(conv_content($row['iq_question'], 1), $thumbnail_width);
         }
 
         $it_href = G5_CONTENTS_URL.'/item.php?it_id='.$row['it_id'];
 
         if ($row['iq_answer'])
         {
-            $iq_answer = get_view_thumbnail($row['iq_answer'], $thumbnail_width);
+            $iq_answer = get_view_thumbnail(conv_content($row['iq_answer'], 1), $thumbnail_width);
             $iq_stats = '답변완료';
             $iq_style = 'cit_qaa_done';
             $is_answer = true;
@@ -86,7 +86,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_CONTENTS_SKIN_URL.'/style.css"
 
             <dl class="cqa_dl">
                 <dt>작성자</dt>
-                <dd><?php echo $row['iq_name']; ?></dd>
+                <dd><?php echo get_text($row['iq_name']); ?></dd>
                 <dt>작성일</dt>
                 <dd><?php echo substr($row['iq_time'],0,10); ?></dd>
                 <dt>상태</dt>
@@ -119,7 +119,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_CONTENTS_SKIN_URL.'/style.css"
     ?>
 </div>
 
-<?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['PHP_SELF']}?$qstr&amp;page="); ?>
+<?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
 
 <script>
 $(function(){

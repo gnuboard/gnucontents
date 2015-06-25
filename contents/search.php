@@ -40,7 +40,7 @@ if (isset($_GET['qorder']))  {
     $qorder = '';
 }
 
-if(!($qname || $nexplan || $qid))
+if(!($qname || $qexplan || $qid))
     $search_all = true;
 
 // 검색범위 checkbox 처리
@@ -222,7 +222,7 @@ if ($is_admin) {
 
         $query_string .= 'ca_id='.$ca_id.'&amp;q='.urlencode($q);
         $query_string .='&amp;qsort='.$qsort.'&amp;qorder='.$qorder;
-        echo get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['PHP_SELF'].'?'.$query_string.'&amp;page=');
+        echo get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$query_string.'&amp;page=');
         ?>
     </div>
     <!-- } 검색결과 끝 -->

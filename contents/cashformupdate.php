@@ -214,7 +214,7 @@ if(!$result) {
             break;
     }
 
-    die("<p>$sql<p>" . mysql_errno() . " : " .  mysql_error() . "<p>error file : {$_SERVER['PHP_SELF']}");
+    die("<p>$sql<p>" . mysql_errno() . " : " .  mysql_error() . "<p>error file : {$_SERVER['SCRIPT_NAME']}");
 }
 
 // 히스토리 테이블에 기록

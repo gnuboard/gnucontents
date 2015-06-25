@@ -503,6 +503,7 @@ td.td_grpset {width:160px;border-left:1px solid #e9ecee;text-align:center}
 .scf_sms_img textarea {margin:54px 0 0;width:115px;height:85px;border:0;background:transparent;font-size:0.95em;overflow:hidden}
 .scf_sms_img span {display:block}
 .scf_sms_cnt {display:block}
+.scf_cardtest .btn_frmline{margin:6px  0}
 
 /* 주문내역 */
 #sodr_list {text-align:center}

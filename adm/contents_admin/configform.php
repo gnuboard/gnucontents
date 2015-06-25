@@ -667,14 +667,15 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <input type="radio" name="de_card_test" value="1" <?php echo $setting['de_card_test']==1?"checked":""; ?> id="de_card_test2">
                 <label for="de_card_test2">테스트결제</label>
                 <div class="scf_cardtest kcp_cardtest">
-
                     <a href="http://admin.kcp.co.kr/" target="_blank" class="btn_frmline">실결제 관리자</a>
                     <a href="http://testadmin8.kcp.co.kr/" target="_blank" class="btn_frmline">테스트 관리자</a>
                 </div>
                 <div class="scf_cardtest lg_cardtest">
-
                     <a href="https://pgweb.uplus.co.kr/" target="_blank" class="btn_frmline">실결제 관리자</a>
                     <a href="https://pgweb.uplus.co.kr/tmert" target="_blank" class="btn_frmline">테스트 관리자</a>
+                </div>
+                <div class="scf_cardtest inicis_cardtest">
+                    <a href="https://iniweb.inicis.com/" target="_blank" class="btn_frmline">상점 관리자</a>
                 </div>
                 <div id="scf_cardtest_tip">
                     <strong>일반결제 사용시 테스트 결제</strong>
@@ -684,19 +685,15 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                         <dt>가상계좌</dt><dd>1원 이상, 모든 은행이 테스트 되는 것은 아니며 "해당 은행 계좌 없음" 자주 발생함.<br>(광주은행, 하나은행)</dd>
                         <dt>휴대폰</dt><dd>1004원, 실결제가 되며 다음날 새벽에 일괄 취소됨</dd>
                     </dl>
-                    <strong>에스크로 사용시 테스트 결제</strong><br>
-                    <dl>
-                        <dt>신용카드</dt><dd>1000원 이상, 모든 카드가 테스트 되는 것은 아니므로 여러가지 카드로 결제해 보셔야 합니다.<br>(BC, 현대, 롯데, 삼성카드)</dd>
-                        <dt>계좌이체</dt><dd>150원 이상, 계좌번호, 비밀번호는 가짜로 입력해도 되며, 주민등록번호는 공인인증서의 것과 일치해야 합니다.</dd>
-                        <dt>가상계좌</dt><dd>1원 이상, 입금통보는 제대로 되지 않음.</dd>
-                        <dt>휴대폰</dt><dd>테스트 지원되지 않음.</dd>
-                    </dl>
                     <ul id="kcp_cardtest_tip" class="scf_cardtest_tip_adm scf_cardtest_tip_adm_hide">
                         <li>테스트결제의 <a href="http://testadmin8.kcp.co.kr/assist/login.LoginAction.do" target="_blank">상점관리자</a> 로그인 정보는 KCP로 문의하시기 바랍니다. (기술지원 1544-8661)</li>
                         <li><b>일반결제</b>의 테스트 사이트코드는 <b>T0000</b> 이며, <b>에스크로 결제</b>의 테스트 사이트코드는 <b>T0007</b> 입니다.</li>
                     </ul>
                     <ul id="lg_cardtest_tip" class="scf_cardtest_tip_adm scf_cardtest_tip_adm_hide">
                         <li>테스트결제의 <a href="http://pgweb.dacom.net:7085/" target="_blank">상점관리자</a> 로그인 정보는 LG유플러스 상점아이디 첫 글자에 t를 추가해서 로그인하시기 바랍니다. 예) tsi_lguplus</li>
+                    </ul>
+                    <ul id="inicis_cardtest_tip" class="scf_cardtest_tip_adm scf_cardtest_tip_adm_hide">
+                        <li><b>일반결제</b>의 테스트 사이트 mid는 <b>INIpayTest</b> 입니다.</li>
                     </ul>
                 </div>
             </td>

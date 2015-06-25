@@ -217,7 +217,7 @@ set_session('ss_cm_cash_charge_id', '');
             </tr>
             <tr>
                 <th scope="row"><label for="od_email">E-mail<strong class="sound_only"> 필수</strong></label></th>
-                <td><input type="text" name="od_email" value="<?php echo $member['mb_email']; ?>" id="od_email" required class="frm_input required" size="30" maxlength="100"></td>
+                <td><input type="text" name="od_email" value="<?php echo $member['mb_email']; ?>" id="od_email" required class="frm_input required" size="25" maxlength="100"></td>
             </tr>
             <tr>
                 <th scope="row"><label for="od_memo">전하실말씀</label></th>
@@ -342,40 +342,41 @@ set_session('ss_cm_cash_charge_id', '');
         if ($setting['de_bank_use'] || $setting['de_vbank_use'] || $setting['de_iche_use'] || $setting['de_card_use'] || $setting['de_hp_use']) {
             echo '<fieldset id="sod_frm_paysel">';
             echo '<legend>결제방법 선택</legend>';
+             echo '<ul>';
         }
 
         // 무통장입금 사용
         if ($setting['de_bank_use']) {
             $multi_settle++;
-            echo '<input type="radio" id="od_settle_bank" name="od_settle_case" value="무통장" '.$checked.'> <label for="od_settle_bank">무통장입금</label>'.PHP_EOL;
+            echo '<li><input type="radio" id="od_settle_bank" name="od_settle_case" value="무통장" '.$checked.'> <label for="od_settle_bank">무통장입금</label></li>'.PHP_EOL;
             $checked = '';
         }
 
         // 가상계좌 사용
         if ($setting['de_vbank_use']) {
             $multi_settle++;
-            echo '<input type="radio" id="od_settle_vbank" name="od_settle_case" value="가상계좌" '.$checked.'> <label for="od_settle_vbank">가상계좌</label>'.PHP_EOL;
+            echo '<li><input type="radio" id="od_settle_vbank" name="od_settle_case" value="가상계좌" '.$checked.'> <label for="od_settle_vbank">가상계좌</label></li>'.PHP_EOL;
             $checked = '';
         }
 
         // 계좌이체 사용
         if ($setting['de_iche_use']) {
             $multi_settle++;
-            echo '<input type="radio" id="od_settle_iche" name="od_settle_case" value="계좌이체" '.$checked.'> <label for="od_settle_iche">계좌이체</label>'.PHP_EOL;
+            echo '<li><input type="radio" id="od_settle_iche" name="od_settle_case" value="계좌이체" '.$checked.'> <label for="od_settle_iche">계좌이체</label></li>'.PHP_EOL;
             $checked = '';
         }
 
         // 휴대폰 사용
         if ($setting['de_hp_use']) {
             $multi_settle++;
-            echo '<input type="radio" id="od_settle_hp" name="od_settle_case" value="휴대폰" '.$checked.'> <label for="od_settle_hp">휴대폰</label>'.PHP_EOL;
+            echo '<li><input type="radio" id="od_settle_hp" name="od_settle_case" value="휴대폰" '.$checked.'> <label for="od_settle_hp">휴대폰</label></li>'.PHP_EOL;
             $checked = '';
         }
 
         // 신용카드 사용
         if ($setting['de_card_use']) {
             $multi_settle++;
-            echo '<input type="radio" id="od_settle_card" name="od_settle_case" value="신용카드" '.$checked.'> <label for="od_settle_card">신용카드</label>'.PHP_EOL;
+            echo '<li><input type="radio" id="od_settle_card" name="od_settle_case" value="신용카드" '.$checked.'> <label for="od_settle_card">신용카드</label></li>'.PHP_EOL;
             $checked = '';
         }
 
@@ -398,6 +399,7 @@ set_session('ss_cm_cash_charge_id', '');
                 }
                 $bank_account .= '</select>'.PHP_EOL;
             }
+             echo '</ul>';
             echo '<div id="settle_bank" style="display:none">';
             echo '<label for="od_bank_account" class="sound_only">입금할 계좌</label>';
             echo $bank_account;
@@ -407,6 +409,7 @@ set_session('ss_cm_cash_charge_id', '');
         }
 
         if ($setting['de_bank_use'] || $setting['de_vbank_use'] || $setting['de_iche_use'] || $setting['de_card_use'] || $setting['de_hp_use']) {
+
             echo '</fieldset>';
         }
 

@@ -41,7 +41,7 @@ include_once('./_head.php');
     include "./cashlist.sub.php";
     ?>
 
-    <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['PHP_SELF']}?$qstr&amp;page="); ?>
+    <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
 </div>
 <!-- } 충전 내역 끝 -->
 

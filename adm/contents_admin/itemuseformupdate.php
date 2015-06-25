@@ -20,7 +20,7 @@ if ($w == "u")
              where is_id = '$is_id' ";
     sql_query($sql);
 
-    update_use_cnt($_POST['it_id']);
+    cm_update_use_cnt($_POST['it_id']);
 
     goto_url("./itemuseform.php?w=$w&amp;is_id=$is_id&amp;$qstr");
 }

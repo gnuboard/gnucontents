@@ -1,6 +1,12 @@
 <?php
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
+// 상단 파일 지정 : 이 코드는 가능한 삭제하지 마십시오.
+if ($default['de_include_head'] && is_file(G5_SHOP_PATH.'/'.$default['de_include_head'])) {
+    include_once(G5_SHOP_PATH.'/'.$default['de_include_head']);
+    return; // 이 코드의 아래는 실행을 하지 않습니다.
+}
+
 include_once(G5_PATH.'/head.sub.php');
 include_once(G5_LIB_PATH.'/outlogin.lib.php');
 include_once(G5_LIB_PATH.'/poll.lib.php');
@@ -8,12 +14,6 @@ include_once(G5_LIB_PATH.'/visit.lib.php');
 include_once(G5_LIB_PATH.'/connect.lib.php');
 include_once(G5_LIB_PATH.'/popular.lib.php');
 include_once(G5_LIB_PATH.'/latest.lib.php');
-
-// 상단 파일 지정 : 이 코드는 가능한 삭제하지 마십시오.
-if ($default['de_include_head'] && is_file(G5_SHOP_PATH.'/'.$default['de_include_head'])) {
-    include_once(G5_SHOP_PATH.'/'.$default['de_include_head']);
-    return; // 이 코드의 아래는 실행을 하지 않습니다.
-}
 ?>
 
 <!-- 상단 시작 { -->
@@ -68,6 +68,7 @@ if ($default['de_include_head'] && is_file(G5_SHOP_PATH.'/'.$default['de_include
                 <?php } else { ?>
                 <li><a href="<?php echo G5_BBS_URL; ?>/login.php?url=<?php echo $urlencode; ?>"><b>로그인</b></a></li>
                 <?php } ?>
+                <li><a href="<?php echo G5_BBS_URL; ?>/qalist.php">1:1문의</a></li>
                 <?php if($setting['de_cash_charge_use']) { ?>
                 <li><a href="<?php echo G5_CONTENTS_URL; ?>/cashform.php">캐시충전</a></li>
                 <?php } ?>
@@ -78,7 +79,7 @@ if ($default['de_include_head'] && is_file(G5_SHOP_PATH.'/'.$default['de_include
                     $com_name = '커뮤니티';
 
                     if($setting['de_contents_layout_use']) {
-                        if(!preg_match('#'.G5_CONTENTS_DIR.'/#', $_SERVER['PHP_SELF'])) {
+                        if(!preg_match('#'.G5_CONTENTS_DIR.'/#', $_SERVER['SCRIPT_NAME'])) {
                             $com_href = G5_CONTENTS_URL;
                             $com_name = '컨텐츠몰';
                         }

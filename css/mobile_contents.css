@@ -117,8 +117,10 @@ a:link, a:visited {color:#000;text-decoration:none}
 #sod_frm_pay .tbl_wrap{margin:0}
 #sod_frm_pay table tbody th{background:#f7f7f7;padding-left:10px}
 #sod_frm_pay table thead th{padding-left:0}
-#sod_frm_paysel{margin-top:20px;padding:15px;background:#F7F7F7;border:2px solid #d1dee2}
+#sod_frm_paysel{margin-top:20px;padding:5px 15px;background:#F7F7F7;border:2px solid #d1dee2}
 #sod_frm_paysel label{padding-right:20px;}
+#sod_frm_paysel ul:after{display:block;visibility:hidden;clear:both;content:""}
+#sod_frm_paysel ul li{width:50%;float:left;padding:5px 0}
 #settle_bank{background:#fff;padding:10px;border:1px solid #d1dee2;margin-top:10px;line-height:1.7em;color:#555;text-align:center}
 #display_pay_button{text-align:center;margin-bottom:20px}
 
@@ -166,7 +168,7 @@ a:link, a:visited {color:#000;text-decoration:none}
 #sod_bsk_tot dd{float:left;width:47%;text-align:right;padding:10px 3% 10px 0;border-bottom:1px solid  #dde4e9;}
 #sod_bsk_tot .sod_bsk_cnt{background:#ddd}
 #sod_frm_orderer h2{margin-bottom:5px}
-#sod_frm_orderer table th{background:#f7f7f7;padding-left:10px}
+#sod_frm_orderer table th{background:#f7f7f7;padding-left:10px;}
 #sod_frm_pt_alert {margin-top:5px;text-align:center}
 .sod_frm_pt{padding:10px;border:1px solid #E6E6E6;border-top:none;line-height:1.5em}
 #sod_frm_pay{position:relative}
