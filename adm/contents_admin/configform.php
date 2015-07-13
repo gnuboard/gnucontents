@@ -12,6 +12,27 @@ if ($config['cf_icode_id'] && $config['cf_icode_pw']) {
     $userinfo = get_icode_userinfo($config['cf_icode_id'], $config['cf_icode_pw']);
 }
 
+// 모바일 초기화면 이미지 줄 수 필드 추가
+if(!isset($setting['de_mobile_type1_list_row'])) {
+    sql_query(" ALTER TABLE `{$g5['g5_contents_default_table']}`
+                    ADD `de_mobile_type1_list_row` int(11) NOT NULL DEFAULT '0' AFTER `de_mobile_type1_list_mod`,
+                    ADD `de_mobile_type2_list_row` int(11) NOT NULL DEFAULT '0' AFTER `de_mobile_type2_list_mod`,
+                    ADD `de_mobile_type3_list_row` int(11) NOT NULL DEFAULT '0' AFTER `de_mobile_type3_list_mod`,
+                    ADD `de_mobile_type4_list_row` int(11) NOT NULL DEFAULT '0' AFTER `de_mobile_type4_list_mod` ", true);
+}
+
+// 모바일 관련상품 이미지 줄 수 필드 추가
+if(!isset($setting['de_mobile_rel_list_mod'])) {
+    sql_query(" ALTER TABLE `{$g5['g5_contents_default_table']}`
+                    ADD `de_mobile_rel_list_mod` int(11) NOT NULL DEFAULT '0' AFTER `de_mobile_rel_list_skin` ", true);
+}
+
+// 모바일 검색상품 이미지 줄 수 필드 추가
+if(!isset($setting['de_mobile_search_list_row'])) {
+    sql_query(" ALTER TABLE `{$g5['g5_contents_default_table']}`
+                    ADD `de_mobile_search_list_row` int(11) NOT NULL DEFAULT '0' AFTER `de_mobile_search_list_mod` ", true);
+}
+
 $g5['title'] = '컨텐츠몰설정';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
@@ -356,8 +377,10 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <select name="de_mobile_type1_list_skin" id="de_mobile_type1_list_skin">
                     <?php echo cm_get_list_skin_options("^main.[0-9]+\.skin\.php", G5_MCONTENTS_SKIN_PATH, $setting['de_mobile_type1_list_skin']); ?>
                 </select>
-                <label for="de_mobile_type1_list_mod">출력할 이미지 수</label>
+                <label for="de_mobile_type1_list_mod">1줄당 이미지 수</label>
                 <input type="text" name="de_mobile_type1_list_mod" value="<?php echo $setting['de_mobile_type1_list_mod']; ?>" id="de_mobile_type1_list_mod" class="frm_input" size="3">
+                <label for="de_mobile_type1_list_row">출력할 줄 수</label>
+                <input type="text" name="de_mobile_type1_list_row" value="<?php echo $setting['de_mobile_type1_list_row']; ?>" id="de_mobile_type1_list_row" class="frm_input" size="3">
                 <label for="de_mobile_type1_img_width">이미지 폭</label>
                 <input type="text" name="de_mobile_type1_img_width" value="<?php echo $setting['de_mobile_type1_img_width']; ?>" id="de_mobile_type1_img_width" class="frm_input" size="3">
                 <label for="de_mobile_type1_img_height">이미지 높이</label>
@@ -372,8 +395,10 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <select name="de_mobile_type2_list_skin" id="de_mobile_type2_list_skin">
                     <?php echo cm_get_list_skin_options("^main.[0-9]+\.skin\.php", G5_MCONTENTS_SKIN_PATH, $setting['de_mobile_type2_list_skin']); ?>
                 </select>
-                <label for="de_mobile_type2_list_mod">출력할 이미지 수</label>
+                <label for="de_mobile_type2_list_mod">1줄당 이미지 수</label>
                 <input type="text" name="de_mobile_type2_list_mod" value="<?php echo $setting['de_mobile_type2_list_mod']; ?>" id="de_mobile_type2_list_mod" class="frm_input" size="3">
+                <label for="de_mobile_type2_list_row">출력할 줄 수</label>
+                <input type="text" name="de_mobile_type2_list_row" value="<?php echo $setting['de_mobile_type2_list_row']; ?>" id="de_mobile_type2_list_row" class="frm_input" size="3">
                 <label for="de_mobile_type2_img_width">이미지 폭</label>
                 <input type="text" name="de_mobile_type2_img_width" value="<?php echo $setting['de_mobile_type2_img_width']; ?>" id="de_mobile_type2_img_width" class="frm_input" size="3">
                 <label for="de_mobile_type2_img_height">이미지 높이</label>
@@ -389,8 +414,10 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <select name="de_mobile_type3_list_skin" id="de_mobile_type3_list_skin">
                     <?php echo cm_get_list_skin_options("^main.[0-9]+\.skin\.php", G5_MCONTENTS_SKIN_PATH, $setting['de_mobile_type3_list_skin']); ?>
                 </select>
-                <label for="de_mobile_type3_list_mod">출력할 이미지 수</label>
+                <label for="de_mobile_type3_list_mod">1줄당 이미지 수</label>
                 <input type="text" name="de_mobile_type3_list_mod" value="<?php echo $setting['de_mobile_type3_list_mod']; ?>" id="de_mobile_type3_list_mod" class="frm_input" size="3">
+                <label for="de_mobile_type3_list_row">출력할 줄 수</label>
+                <input type="text" name="de_mobile_type3_list_row" value="<?php echo $setting['de_mobile_type3_list_row']; ?>" id="de_mobile_type3_list_row" class="frm_input" size="3">
                 <label for="de_mobile_type3_img_width">이미지 폭</label>
                 <input type="text" name="de_mobile_type3_img_width" value="<?php echo $setting['de_mobile_type3_img_width']; ?>" id="de_mobile_type3_img_width" class="frm_input" size="3">
                 <label for="de_mobile_type3_img_height">이미지 높이</label>
@@ -406,8 +433,10 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <select name="de_mobile_type4_list_skin" id="de_mobile_type4_list_skin">
                     <?php echo cm_get_list_skin_options("^main.[0-9]+\.skin\.php", G5_MCONTENTS_SKIN_PATH, $setting['de_mobile_type4_list_skin']); ?>
                 </select>
-                <label for="de_mobile_type4_list_mod">출력할 이미지 수</label>
+                <label for="de_mobile_type4_list_mod">1줄당 이미지 수</label>
                 <input type="text" name="de_mobile_type4_list_mod" value="<?php echo $setting['de_mobile_type4_list_mod']; ?>" id="de_mobile_type4_list_mod" class="frm_input" size="3">
+                <label for="de_mobile_type4_list_row">출력할 줄 수</label>
+                <input type="text" name="de_mobile_type4_list_row" value="<?php echo $setting['de_mobile_type4_list_row']; ?>" id="de_mobile_type4_list_row" class="frm_input" size="3">
                 <label for="de_mobile_type4_img_width">이미지 폭</label>
                 <input type="text" name="de_mobile_type4_img_width" value="<?php echo $setting['de_mobile_type4_img_width']; ?>" id="de_mobile_type4_img_width" class="frm_input" size="3">
                 <label for="de_mobile_type4_img_height">이미지 높이</label>
@@ -796,6 +825,8 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <input type="text" name="de_mobile_rel_img_width" value="<?php echo $setting['de_mobile_rel_img_width']; ?>" id="de_mobile_rel_img_width" class="frm_input" size="3">
                 <label for="de_mobile_rel_img_height">이미지높이</label>
                 <input type="text" name="de_mobile_rel_img_height" value="<?php echo $setting['de_mobile_rel_img_height']; ?>" id="de_mobile_rel_img_height" class="frm_input" size="3">
+                <label for="de_mobile_rel_list_mod">1줄당 이미지 수</label>
+                <input type="text" name="de_mobile_rel_list_mod" value="<?php echo $setting['de_mobile_rel_list_mod']; ?>" id="de_mobile_rel_list_mod" class="frm_input" size="3">
                 <label for="de_mobile_rel_list_use">출력</label>
                 <input type="checkbox" name="de_mobile_rel_list_use" value="1" id="de_mobile_rel_list_use" <?php echo $setting['de_mobile_rel_list_use']?"checked":""; ?>>
             </td>
@@ -828,8 +859,10 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
                 <input type="text" name="de_mobile_search_img_width" value="<?php echo $setting['de_mobile_search_img_width']; ?>" id="de_mobile_search_img_width" class="frm_input" size="3">
                 <label for="de_mobile_search_img_height">이미지높이</label>
                 <input type="text" name="de_mobile_search_img_height" value="<?php echo $setting['de_mobile_search_img_height']; ?>" id="de_mobile_search_img_height" class="frm_input" size="3">
-                <label for="de_mobile_search_list_mod">이미지 수</label>
+                <label for="de_mobile_search_list_mod">1줄당 이미지 수</label>
                 <input type="text" name="de_mobile_search_list_mod" value="<?php echo $setting['de_mobile_search_list_mod']; ?>" id="de_mobile_search_list_mod" class="frm_input" size="3">
+                <label for="de_mobile_search_list_row">출력할 줄 수</label>
+                <input type="text" name="de_mobile_search_list_row" value="<?php echo $setting['de_mobile_search_list_row']; ?>" id="de_mobile_search_list_row" class="frm_input" size="3">
             </td>
         </tr>
         <tr>

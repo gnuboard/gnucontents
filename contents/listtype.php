@@ -58,8 +58,8 @@ if (file_exists($list_file)) {
     $list->set_view('it_id', false);
     $list->set_view('it_name', true);
     $list->set_view('it_price', true);
-    //$list->set_view('it_icon', true);
-    //$list->set_view('sns', true);
+    $list->set_view('it_icon', false);
+    $list->set_view('sns', false);
     $list->set_view('it_sum_qty', true);
     $list->set_view('it_wish_qty', true);
     echo $list->run();

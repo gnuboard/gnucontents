@@ -47,7 +47,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_MCONTENTS_CSS_URL.'/style.css"
 
     $sql = " select b.* from {$g5['g5_contents_item_relation_table']} a left join {$g5['g5_contents_item_table']} b on (a.it_id2=b.it_id) where a.it_id = '{$it['it_id']}' and b.it_use='1' ";
 
-    $list = new cm_item_list($rel_skin_file, 1, 1, $setting['de_mobile_rel_img_width'], $setting['de_mobile_rel_img_height']);
+    $list = new cm_item_list($rel_skin_file, $setting['de_mobile_rel_list_mod'], 0, $setting['de_mobile_rel_img_width'], $setting['de_mobile_rel_img_height']);
     $list->set_mobile(true);
     $list->set_query($sql);
     $list->set_view('sns', true);

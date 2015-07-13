@@ -34,6 +34,7 @@ include_once(G5_CONTENTS_PATH.'/contents.head.php');
     $list->set_view('it_price', true);
     $list->set_view('it_sum_qty', true);
     $list->set_view('it_wish_qty', true);
+    $list->set_view('it_icon', false);
     echo $list->run();
     ?>
 </section>
@@ -57,6 +58,7 @@ include_once(G5_CONTENTS_PATH.'/contents.head.php');
     $list->set_view('it_price', true);
     $list->set_view('it_sum_qty', true);
     $list->set_view('it_wish_qty', true);
+    $list->set_view('it_icon', false);
     echo $list->run();
     ?>
 </section>
@@ -80,6 +82,7 @@ include_once(G5_CONTENTS_PATH.'/contents.head.php');
     $list->set_view('it_price', true);
     $list->set_view('it_sum_qty', true);
     $list->set_view('it_wish_qty', true);
+    $list->set_view('it_icon', false);
     echo $list->run();
     ?>
 </section>
@@ -102,6 +105,7 @@ include_once(G5_CONTENTS_PATH.'/contents.head.php');
     $list->set_view('it_price', true);
     $list->set_view('it_sum_qty', true);
     $list->set_view('it_wish_qty', true);
+    $list->set_view('it_icon', false);
     echo $list->run();
     ?>
 </section>

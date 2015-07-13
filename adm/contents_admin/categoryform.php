@@ -56,7 +56,8 @@ if ($w == "")
         $ca['ca_mobile_img_height'] = $setting['de_simg_height'];
         $ca['ca_list_mod'] = 3;
         $ca['ca_list_row'] = 5;
-        $ca['ca_mobile_list_mod'] = 10;
+        $ca['ca_mobile_list_mod'] = 3;
+        $ca['ca_mobile_list_mod'] = 5;
     }
     $ca['ca_skin'] = "list.10.skin.php";
     $ca['ca_mobile_skin'] = "list.10.skin.php";
@@ -88,6 +89,12 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
     <input type="submit" value="확인" class="btn_submit" accesskey="s">
     <a href="./categorylist.php?'.$qstr.'">목록</a>
 </div>';
+
+// 모바일 상품 출력줄수 필드 추가
+if(!sql_query(" select ca_mobile_list_row from {$g5['g5_contents_category_table']} limit 1 ", false)) {
+    sql_query(" ALTER TABLE `{$g5['g5_contents_category_table']}`
+                    ADD `ca_mobile_list_row` int(11) NOT NULL DEFAULT '0' AFTER `ca_mobile_list_mod` ", true);
+}
 
 // 스킨 Path
 if(!$ca['ca_skin_dir'])
@@ -266,10 +273,17 @@ else
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="ca_mobile_list_mod">모바일 이미지 수</label></th>
+            <th scope="row"><label for="ca_mobile_list_mod">모바일 1줄당 이미지 수</label></th>
             <td>
-                <?php echo help("한 페이지에 출력할 이미지 수를 설정합니다."); ?>
+                <?php echo help("한 줄에 설정한 값만큼의 상품을 출력하지만 스킨에 따라 한 줄에 하나의 상품만 출력할 수도 있습니다."); ?>
                 <input type="text" name="ca_mobile_list_mod" value='<?php echo $ca['ca_mobile_list_mod']; ?>' id="ca_mobile_list_mod" required class="required frm_input" size="3">
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="ca_mobile_list_row">모바일 이미지 줄 수</label></th>
+            <td>
+                <?php echo help("한 페이지에 출력할 이미지 줄 수를 설정합니다.\n한 페이지에서 표시하는 상품수는 (1줄당 이미지 수 x 줄 수) 입니다."); ?>
+                <input type="text" name="ca_mobile_list_row" value='<?php echo $ca['ca_mobile_list_row']; ?>' id="ca_mobile_list_row" required class="required frm_input" size="3">
             </td>
         </tr>
         <tr>

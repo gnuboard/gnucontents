@@ -30,6 +30,7 @@ include_once(G5_MCONTENTS_PATH.'/contents.head.php');
             $list->set_view('it_price', true);
             $list->set_view('it_sum_qty', true);
             $list->set_view('it_wish_qty', true);
+            $list->set_view('it_icon', false);
             echo $list->run();
             ?>
             <div class="more_btn"><a href="<?php echo G5_CONTENTS_URL; ?>/listtype.php?type=1">더보기 +</a></div>
@@ -55,6 +56,7 @@ include_once(G5_MCONTENTS_PATH.'/contents.head.php');
             $list->set_view('it_price', true);
             $list->set_view('it_sum_qty', true);
             $list->set_view('it_wish_qty', true);
+            $list->set_view('it_icon', false);
             echo $list->run();
             ?>
             <div class="more_btn"><a href="<?php echo G5_CONTENTS_URL; ?>/listtype.php?type=2">더보기 +</a></div>
@@ -80,6 +82,7 @@ include_once(G5_MCONTENTS_PATH.'/contents.head.php');
             $list->set_view('it_price', true);
             $list->set_view('it_sum_qty', true);
             $list->set_view('it_wish_qty', true);
+            $list->set_view('it_icon', false);
             echo $list->run();
             ?>
             <div class="more_btn"><a href="<?php echo G5_CONTENTS_URL; ?>/listtype.php?type=3">더보기 +</a></div>
@@ -105,6 +108,7 @@ include_once(G5_MCONTENTS_PATH.'/contents.head.php');
             $list->set_view('it_price', true);
             $list->set_view('it_sum_qty', true);
             $list->set_view('it_wish_qty', true);
+            $list->set_view('it_icon', false);
             echo $list->run();
             ?>
             <div class="more_btn"><a href="<?php echo G5_CONTENTS_URL; ?>/listtype.php?type=4">더보기 +</a></div>

@@ -31,7 +31,8 @@ for ($i=0; $i<count($_POST['ca_id']); $i++)
                     ca_img_height       = '{$_POST['ca_img_height'][$i]}',
                     ca_list_mod         = '{$_POST['ca_list_mod'][$i]}',
                     ca_list_row         = '{$_POST['ca_list_row'][$i]}',
-                    ca_mobile_list_mod  = '{$_POST['ca_mobile_list_mod'][$i]}'
+                    ca_mobile_list_mod  = '{$_POST['ca_mobile_list_mod'][$i]}',
+                    ca_mobile_list_row  = '{$_POST['ca_mobile_list_row'][$i]}'
               where ca_id = '{$_POST['ca_id'][$i]}' ";
     sql_query($sql);
 

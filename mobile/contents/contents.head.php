@@ -22,8 +22,10 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
     ?>
 
     <div id="hd_wrapper">
-        <a href="<?php echo G5_CONTENTS_URL; ?>/category.php" id="category" target="_blank">분류</a>
         <div id="logo"><a href="<?php echo $setting['de_root_index_use'] ? G5_URL : G5_CONTENTS_URL; ?>/"><img src="<?php echo G5_DATA_URL; ?>/common/cm_logo_img" alt="<?php echo $config['cf_title']; ?>"></a></div>
+
+        <?php include_once(G5_MCONTENTS_PATH.'/category.php'); // 분류 ?>
+
         <button type="button" id="hd_sch_open">검색<span class="sound_only"> 열기</span></button>
         <div id="hd_sch">
             <h3>컨텐츠몰 검색</h3>

@@ -5,20 +5,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.G5_MCONTENTS_CSS_URL.'/style.css">', 0);
 ?>
 
-<script src="<?php echo G5_JS_URL ?>/jquery.fancylist.js"></script>
-
 <!-- 상품진열 10 시작 { -->
 <?php
-for ($i=1; $row=sql_fetch_array($result); $i++) {
-    if ($this->list_mod >= 2) { // 1줄 이미지 : 2개 이상
-        if ($i%$this->list_mod == 0) $cct_last = ' cct_last'; // 줄 마지막
-        else if ($i%$this->list_mod == 1) $cct_last = ' cct_clear'; // 줄 첫번째
-        else $cct_last = '';
-    } else { // 1줄 이미지 : 1개
-        $cct_last = ' cct_clear';
-    }
+$li_width = intval(100 / $this->list_mod);
+$li_width_style = ' style="width:'.$li_width.'%;"';
 
-    if ($i == 1) {
+for ($i=0; $row=sql_fetch_array($result); $i++) {
+    if ($i == 0) {
         if ($this->css) {
             echo "<ul id=\"cct_wrap\" class=\"{$this->css}\">\n";
         } else {
@@ -26,10 +19,15 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
         }
     }
 
-    echo "<li class=\"cct_li {$cct_last}\" style=\"width:{$this->img_width}px\">\n";
+    if($i % $this->list_mod == 0)
+        $cct_clear = ' cct_clear';
+    else
+        $cct_clear = '';
+
+    echo "<li class=\"cct_li {$cct_clear}\"{$li_width_style}>\n";
 
     if ($this->href) {
-        echo "<div class=\"cct_img\"><a href=\"{$this->href}{$row['it_id']}\" class=\"sct_a\">\n";
+        echo "<div class=\"reli_wr\"><div class=\"cct_img\"><a href=\"{$this->href}{$row['it_id']}\" class=\"sct_a\">\n";
     }
 
     if ($this->view_it_img) {
@@ -71,17 +69,11 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
     }
 
 
-    echo "</li>\n";
+    echo "</div></li>\n";
 }
 
-if ($i > 1) echo "</ul>\n";
+if ($i > 0) echo "</ul>\n";
 
-if($i == 1) echo "<p class=\"cct_noitem\">등록된 상품이 없습니다.</p>\n";
+if($i == 0) echo "<p class=\"cct_noitem\">등록된 상품이 없습니다.</p>\n";
 ?>
 <!-- } 상품진열 10 끝 -->
-
-<script>
-$(function() {
-    $("#cct_wrap").fancyList("li.cct_li", "cct_clear");
-});
-</script>

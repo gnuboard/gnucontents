@@ -107,9 +107,9 @@
 .cct_wrap:after{  display: block;  visibility: hidden;  clear: both;  content: "";}
 .cct_wrap_list h2{position:absolute;font-size:0;line-height:0;overflow:hidden}
 .cct li.cct_li{float: left; border:1px solid #e9eef1;margin-right:16px;_margin-right:14px;border-bottom:2px solid #dfe2e4;margin-bottom:15px}
-.cct li.cct_li .cct_img{overflow: hidden;border:1px solid #afb7bd;}
+.cct li.cct_li .cct_img{overflow: hidden;border:1px solid #afb7bd;margin-bottom:20px}
 .last_li{margin-right:0 !important;}
-.cct li.cct_li .cct_tit{padding:0 15px;margin-top:20px}
+.cct li.cct_li .cct_tit{padding:0 15px;margin-top:10px}
 .cct li.cct_li .cct_tit .goods_tit{display:block;font-weight:bold;font-size:1.250em;margin-bottom:8px;color:#2a2a2a;  overflow: hidden;  white-space: nowrap;}
 .cct li.cct_li .cct_tit .goods_basic{line-height:1.5em;color:#4b4b4b;height:33px; display:inline-block;overflow:hidden;margin-bottom:5px}
 .cct li.cct_li .cct_price{margin:0 15px;border-top:1px solid #eef2f4;height:36px;line-height:36px;position:relative}
@@ -117,6 +117,9 @@
 .cct li.cct_li .cct_price .wish_c,.cct li .cct_price .buy_c{color:#9e9c9c}
 .cct li.cct_li .cct_price .buy_c{background:url(img/bullet2.jpg) no-repeat 0 50%;padding-left:5px}
 .cct li.cct_clear{clear:both}
+.cct li .sct_icon{margin:0 15px ;}
+.cct li .sct_icon img{margin-right:2px}
+
 #quickbtn:after{display: block; visibility: hidden; clear: both; content: "";}
 #quickbtn{padding-bottom:30px}
 #quickbtn span{display:inline-block;width:25%;float:left;text-align:center;margin-right:-1px}

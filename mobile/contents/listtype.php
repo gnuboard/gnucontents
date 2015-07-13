@@ -13,8 +13,8 @@ include_once(G5_MCONTENTS_PATH.'/_head.php');
 
 // 한페이지에 출력하는 이미지수 = $list_mod * $list_row
 // 모바일에서는 계산된 이미지수가 중요함
-$list_mod   = 1;    // 한줄에 이미지 몇개씩 출력? 단, 모바일환경에서는 사용되지 않음.
-$list_row   = 10;    // 한 페이지에 몇라인씩 출력?
+$list_mod   = 3;    // 한줄에 이미지 몇개씩 출력
+$list_row   = 5;    // 한 페이지에 몇라인씩 출력
 
 $img_width  = 230;  // 출력이미지 폭
 $img_height = 230;  // 출력이미지 높이
@@ -55,8 +55,8 @@ if (file_exists($list_file)) {
     $list->set_view('it_id', false);
     $list->set_view('it_name', true);
     $list->set_view('it_price', true);
-    //$list->set_view('it_icon', true);
-    //$list->set_view('sns', true);
+    $list->set_view('it_icon', false);
+    $list->set_view('sns', false);
     $list->set_view('it_sum_qty', true);
     $list->set_view('it_wish_qty', true);
     echo $list->run();

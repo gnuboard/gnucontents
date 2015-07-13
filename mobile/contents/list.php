@@ -81,13 +81,13 @@ define('G5_MCONTENTS_CSS_URL', str_replace(G5_PATH, G5_URL, $skin_dir));
         echo '</div>';
 
         // 총몇개 = 한줄에 몇개 * 몇줄
-        $items = $ca['ca_mobile_list_mod'];
+        $items = $ca['ca_mobile_list_mod'] * $ca['ca_mobile_list_row'];
         // 페이지가 없으면 첫 페이지 (1 페이지)
         if ($page < 1) $page = 1;
         // 시작 레코드 구함
         $from_record = ($page - 1) * $items;
 
-        $list = new cm_item_list($skin_file, $ca['ca_mobile_list_mod'], 1, $ca['ca_mobile_img_width'], $ca['ca_mobile_img_height']);
+        $list = new cm_item_list($skin_file, $ca['ca_mobile_list_mod'], $ca['ca_mobile_list_row'], $ca['ca_mobile_img_width'], $ca['ca_mobile_img_height']);
         $list->set_category($ca['ca_id'], 1);
         $list->set_category($ca['ca_id'], 2);
         $list->set_category($ca['ca_id'], 3);
@@ -100,10 +100,10 @@ define('G5_MCONTENTS_CSS_URL', str_replace(G5_PATH, G5_URL, $skin_dir));
         $list->set_view('it_name', true);
         $list->set_view('it_basic', true);
         $list->set_view('it_price', true);
-        //$list->set_view('it_icon', true);
+        $list->set_view('it_icon', false);
         $list->set_view('it_sum_qty', true);
         $list->set_view('it_wish_qty', true);
-        //$list->set_view('sns', true);
+        $list->set_view('sns', false);
         echo $list->run();
 
         // where 된 전체 상품수

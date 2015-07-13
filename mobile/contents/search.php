@@ -101,7 +101,7 @@ if (($qsort == "it_sum_qty" || $qsort == "it_price" || $qsort == "it_use_avg" ||
 }
 
 // 총몇개 = 한줄에 몇개 * 몇줄
-$items = $setting['de_mobile_search_list_mod'];
+$items = $setting['de_mobile_search_list_mod'] * $setting['de_mobile_search_list_row'];
 // 페이지가 없으면 첫 페이지 (1 페이지)
 if ($page < 1) $page = 1;
 // 시작 레코드 구함
@@ -186,17 +186,17 @@ $total_page  = ceil($total_count / $items); // 전체 페이지 계산
         $list_file = G5_MCONTENTS_SKIN_PATH.'/'.$setting['de_mobile_search_list_skin'];
         if (file_exists($list_file)) {
             define('G5_MCONTENTS_CSS_URL', G5_MCONTENTS_SKIN_URL);
-            $list = new cm_item_list($list_file, $setting['de_mobile_search_list_mod'], 1, $setting['de_mobile_search_img_width'], $setting['de_mobile_search_img_height']);
+            $list = new cm_item_list($list_file, $setting['de_mobile_search_list_mod'], $setting['de_mobile_search_list_row'], $setting['de_mobile_search_img_width'], $setting['de_mobile_search_img_height']);
             $list->set_query(" select * $sql_common $sql_where {$order_by} limit $from_record, $items ");
             $list->set_is_page(true);
             $list->set_mobile(true);
             $list->set_view('it_img', true);
-            //$list->set_view('it_id', true);
+            $list->set_view('it_id', false);
             $list->set_view('it_name', true);
             $list->set_view('it_basic', true);
             $list->set_view('it_price', true);
-            //$list->set_view('it_icon', true);
-            //$list->set_view('sns', true);
+            $list->set_view('it_icon', false);
+            $list->set_view('sns', false);
             $list->set_view('it_sum_qty', true);
             $list->set_view('it_wish_qty', true);
             echo $list->run();
