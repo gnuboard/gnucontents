@@ -75,6 +75,6 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_CONTENTS_CSS_URL.'/style.css">
 
 <script>
 $(window).on("load", function() {
-    $("#sit_inf_explan").viewimageresize2();
+    $("#cit_inf_explan").viewimageresize2();
 });
 </script>

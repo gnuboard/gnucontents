@@ -433,7 +433,7 @@ set_session('ss_cm_cash_charge_id', '');
         <span style="display:block; text-align:center;margin-top:120px"><img src="<?php echo G5_CONTENTS_URL; ?>/img/loading.gif" alt="" ></span>
         <span style="display:block; text-align:center;margin-top:10px; font-size:14px">주문완료 중입니다. 잠시만 기다려 주십시오.</span>
     </div>
- 
+
 </div>
 </form>
 <script>
@@ -457,7 +457,7 @@ $(function() {
         );
     });
 
-    $(".cp_apply").live("click", function() {
+    $(document).on("click", ".cp_apply", function() {
         var $el = $(this).closest("li");
         var cp_id = $el.find("input[name='f_cp_id[]']").val();
         var price = $el.find("input[name='f_cp_prc[]']").val();
@@ -516,12 +516,12 @@ $(function() {
             $cp_btn_el.after("<button type=\"button\" class=\"cp_cancel btn_frmline\">취소</button>");
     });
 
-    $("#cp_close").live("click", function() {
+    $(document).on("click", "#cp_close", function() {
         $("#cp_frm").remove();
         $cp_btn_el.focus();
     });
 
-    $(".cp_cancel").live("click", function() {
+    $(document).on("click", ".cp_cancel", function() {
         coupon_cancel($(this).closest("li"));
         calculate_total_price();
         $("#cp_frm").remove();
@@ -546,7 +546,7 @@ $(function() {
         );
     });
 
-    $(".od_cp_apply").live("click", function() {
+    $(document).on("click", ".od_cp_apply", function() {
         var $el = $(this).closest("tr");
         var cp_id = $el.find("input[name='o_cp_id[]']").val();
         var price = parseInt($el.find("input[name='o_cp_prc[]']").val());
@@ -582,12 +582,12 @@ $(function() {
             $("#od_coupon_btn").after("<button type=\"button\" id=\"od_coupon_cancel\" class=\"btn_frmline\">쿠폰취소</button>");
     });
 
-    $("#od_coupon_close").live("click", function() {
+    $(document).on("click", "#od_coupon_close", function() {
         $("#od_coupon_frm").remove();
         $("#od_coupon_btn").focus();
     });
 
-    $("#od_coupon_cancel").live("click", function() {
+    $(document).on("click", "#od_coupon_cancel", function() {
         var org_price = $("input[name=org_od_price]").val();
         var item_coupon = parseInt($("input[name=item_coupon]").val());
         $("input[name=od_price]").val(org_price - item_coupon);

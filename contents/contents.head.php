@@ -1,10 +1,9 @@
 <?php
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
-// 상단 파일 지정 : 이 코드는 가능한 삭제하지 마십시오.
-if ($default['de_include_head'] && is_file(G5_SHOP_PATH.'/'.$default['de_include_head'])) {
-    include_once(G5_SHOP_PATH.'/'.$default['de_include_head']);
-    return; // 이 코드의 아래는 실행을 하지 않습니다.
+if(defined('G5_THEME_PATH')) {
+    require_once(G5_THEME_CONTENTS_PATH.'/contents.head.php');
+    return;
 }
 
 include_once(G5_PATH.'/head.sub.php');
@@ -28,7 +27,7 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
     ?>
 
     <div id="hd_wrapper">
-        <div id="logo"><a href="<?php echo $setting['de_root_index_use'] ? G5_URL : G5_CONTENTS_URL; ?>/"><img src="<?php echo G5_DATA_URL; ?>/common/cm_logo_img" alt="<?php echo $config['cf_title']; ?>"></a></div>
+        <div id="logo"><a href="<?php echo (defined('G5_COMMUNITY_USE') && G5_COMMUNITY_USE) ? G5_URL : G5_CONTENTS_URL; ?>/"><img src="<?php echo G5_DATA_URL; ?>/common/cm_logo_img" alt="<?php echo $config['cf_title']; ?>"></a></div>
 
         <div id="hd_sch">
             <h3>컨텐츠몰 검색</h3>
@@ -73,24 +72,9 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
                 <li><a href="<?php echo G5_CONTENTS_URL; ?>/cashform.php">캐시충전</a></li>
                 <?php } ?>
                 <li><a href="<?php echo G5_BBS_URL; ?>/content.php?co_id=guide">이용안내</a></li>
-                <?php
-                if(!$setting['de_root_index_use']) {
-                    $com_href = G5_URL;
-                    $com_name = '커뮤니티';
-
-                    if($setting['de_contents_layout_use']) {
-                        if(!preg_match('#'.G5_CONTENTS_DIR.'/#', $_SERVER['SCRIPT_NAME'])) {
-                            $com_href = G5_CONTENTS_URL;
-                            $com_name = '컨텐츠몰';
-                        }
-                    }
-                ?>
-                <li><a href="<?php echo $com_href; ?>/"><?php echo $com_name; ?></a></li>
-                <?php
-                    unset($com_href);
-                    unset($com_name);
-                }
-                ?>
+                <?php if(G5_COMMUNITY_USE) { ?>
+                <li><a href="<?php echo G5_URL; ?>/">커뮤니티</a></li>
+                <?php } ?>
             </ul>
         </div>
     </div>

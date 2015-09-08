@@ -183,15 +183,7 @@ $frm_submit .= '</div>';
         <tr>
             <th scope="row"><label for="it_skin">PC용 스킨</label></th>
             <td colspan="3">
-                <select name="it_skin" id="it_skin">
-                <?php
-                $arr = get_skin_dir('contents');
-                for ($i=0; $i<count($arr); $i++) {
-                    if ($i == 0) echo "<option value=\"\">선택</option>";
-                    echo "<option value=\"".$arr[$i]."\"".get_selected($it['it_skin'], $arr[$i]).">".$arr[$i]."</option>\n";
-                }
-                ?>
-                </select>
+                <?php echo get_skin_select('contents', 'it_skin', 'it_skin', $it['it_skin']); ?>
             </td>
             <td class="td_grpset">
                 <input type="checkbox" name="chk_ca_it_skin" value="1" id="chk_ca_it_skin">
@@ -203,15 +195,7 @@ $frm_submit .= '</div>';
         <tr>
             <th scope="row"><label for="it_mobile_skin">모바일용 스킨</label></th>
             <td colspan="3">
-                <select name="it_mobile_skin" id="it_mobile_skin">
-                <?php
-                $arr = get_skin_dir('contents', G5_MOBILE_PATH.'/'.G5_SKIN_DIR);
-                for ($i=0; $i<count($arr); $i++) {
-                    if ($i == 0) echo "<option value=\"\">선택</option>";
-                    echo "<option value=\"".$arr[$i]."\"".get_selected($it['it_mobile_skin'], $arr[$i]).">".$arr[$i]."</option>\n";
-                }
-                ?>
-                </select>
+                <?php echo get_skin_select('contents', 'it_mobile_skin', 'it_mobile_skin', $it['it_mobile_skin']); ?>
             </td>
             <td class="td_grpset">
                 <input type="checkbox" name="chk_ca_it_mobile_skin" value="1" id="chk_ca_it_mobile_skin">
@@ -953,7 +937,7 @@ $frm_submit .= '</div>';
                     );
                 });
 
-                $("#relation .add_item").live("click", function() {
+                $(document).on("click", "#relation .add_item", function() {
                     // 이미 등록된 상품인지 체크
                     var $li = $(this).closest("li");
                     var it_id = $li.find("input:hidden").val();
@@ -984,7 +968,7 @@ $frm_submit .= '</div>';
                     $li.remove();
                 });
 
-                $("#reg_relation .del_item").live("click", function() {
+                $(document).on("click", "#reg_relation .del_item", function() {
                     if(!confirm("상품을 삭제하시겠습니까?"))
                         return false;
 
@@ -1073,7 +1057,7 @@ $frm_submit .= '</div>';
             </div>
             <script>
             $(function() {
-                $("#event_list .add_event").live("click", function() {
+                $(document).on("click", "#event_list .add_event", function() {
                     // 이미 등록된 이벤트인지 체크
                     var $li = $(this).closest("li");
                     var ev_id = $li.find("input:hidden").val();
@@ -1102,7 +1086,7 @@ $frm_submit .= '</div>';
                     }
                 });
 
-                $("#reg_event_list .del_event").live("click", function() {
+                $(document).on("click", "#reg_event_list .del_event", function() {
                     if(!confirm("상품을 삭제하시겠습니까?"))
                         return false;
 

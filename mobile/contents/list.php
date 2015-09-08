@@ -6,6 +6,15 @@ $ca = sql_fetch($sql);
 if (!$ca['ca_id'])
     alert('등록된 분류가 없습니다.');
 
+// 테마미리보기 스킨 등의 변수 재설정
+if(defined('_THEME_PREVIEW_') && _THEME_PREVIEW_ === true) {
+    $ca['ca_mobile_skin']       = (isset($tconfig['ca_mobile_skin']) && $tconfig['ca_mobile_skin']) ? $tconfig['ca_mobile_skin'] : $ca['ca_mobile_skin'];
+    $ca['ca_mobile_img_width']  = (isset($tconfig['ca_mobile_img_width']) && $tconfig['ca_mobile_img_width']) ? $tconfig['ca_mobile_img_width'] : $ca['ca_mobile_img_width'];
+    $ca['ca_mobile_img_height'] = (isset($tconfig['ca_mobile_img_height']) && $tconfig['ca_mobile_img_height']) ? $tconfig['ca_mobile_img_height'] : $ca['ca_mobile_img_height'];
+    $ca['ca_mobile_list_mod']   = (isset($tconfig['ca_mobile_list_mod']) && $tconfig['ca_mobile_list_mod']) ? $tconfig['ca_mobile_list_mod'] : $ca['ca_mobile_list_mod'];
+    $ca['ca_mobile_list_row']   = (isset($tconfig['ca_mobile_list_row']) && $tconfig['ca_mobile_list_row']) ? $tconfig['ca_mobile_list_row'] : $ca['ca_mobile_list_row'];
+}
+
 // 본인인증, 성인인증체크
 if(!$is_admin) {
     $msg = cm_member_cert_check($ca_id, 'list');
@@ -20,7 +29,10 @@ include_once(G5_MCONTENTS_PATH.'/_head.php');
 $skin_dir = G5_MCONTENTS_SKIN_PATH;
 
 if($ca['ca_mobile_skin_dir']) {
-    $skin_dir = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/contents/'.$ca['ca_mobile_skin_dir'];
+    if(preg_match('#^theme/(.+)$#', $ca['ca_mobile_skin_dir'], $match))
+        $skin_dir = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/contents/'.$match[1];
+    else
+        $skin_dir = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/contents/'.$ca['ca_mobile_skin_dir'];
 
     if(is_dir($skin_dir)) {
         $skin_file = $skin_dir.'/'.$ca['ca_mobile_skin'];
@@ -33,8 +45,6 @@ if($ca['ca_mobile_skin_dir']) {
 }
 
 define('G5_MCONTENTS_CSS_URL', str_replace(G5_PATH, G5_URL, $skin_dir));
-
-
 ?>
 
 

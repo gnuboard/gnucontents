@@ -54,8 +54,11 @@ if (get_cookie('ck_cm_it_id') != $it_id) {
 $skin_dir = G5_MCONTENTS_SKIN_PATH;
 $ca_dir_check = true;
 
-if($it['it_skin']) {
-    $skin_dir = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/contents/'.$it['it_mobile_skin'];
+if($it['it_mobile_skin']) {
+    if(preg_match('#^theme/(.+)$#', $it['it_mobile_skin'], $match))
+        $skin_dir = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/contents/'.$match[1];
+    else
+        $skin_dir = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/contents/'.$it['it_mobile_skin'];
 
     if(is_dir($skin_dir)) {
         $form_skin_file = $skin_dir.'/item.form.skin.php';
@@ -67,7 +70,10 @@ if($it['it_skin']) {
 
 if($ca_dir_check) {
     if($ca['ca_mobile_skin_dir']) {
-        $skin_dir = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/contents/'.$ca['ca_mobile_skin_dir'];
+        if(preg_match('#^theme/(.+)$#', $ca['ca_mobile_skin_dir'], $match))
+            $skin_dir = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/contents/'.$match[1];
+        else
+            $skin_dir = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/contents/'.$ca['ca_mobile_skin_dir'];
 
         if(is_dir($skin_dir)) {
             $form_skin_file = $skin_dir.'/item.form.skin.php';

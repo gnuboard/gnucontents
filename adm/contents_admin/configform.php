@@ -38,7 +38,6 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 
 $pg_anchor = '<ul class="anchor">
 <li><a href="#anc_scf_info">사업자정보</a></li>
-<li><a href="#anc_scf_lay">레이아웃 설정</a></li>
 <li><a href="#anc_scf_skin">스킨설정</a></li>
 <li><a href="#anc_scf_index">컨텐츠몰 초기화면</a></li>
 <li><a href="#anc_mscf_index">모바일 초기화면</a></li>
@@ -135,70 +134,6 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
 
 <?php echo $frm_submit; ?>
 
-<section id="anc_scf_lay">
-    <h2 class="h2_frm">레이아웃 설정</h2>
-    <?php echo $pg_anchor; ?>
-    <div class="local_desc02 local_desc">
-        <p>기본 설정된 파일 등을 변경할 수 있습니다.</p>
-    </div>
-
-    <div class="tbl_frm01 tbl_wrap">
-        <table>
-        <caption>레이아웃 설정</caption>
-        <colgroup>
-            <col class="grid_4">
-            <col>
-        </colgroup>
-        <tbody>
-        <tr>
-            <th scope="row"><label for="de_include_index">초기화면 파일</label></th>
-            <td>
-                <?php echo help('입력이 없으면 '.G5_CONTENTS_DIR.'/index.php가 초기화면 파일로 설정됩니다.<br>초기화면 파일은 '.G5_CONTENTS_DIR.'/index.php 파일과 동일한 위치에 존재해야 합니다.') ?>
-                <input type="text" name="de_include_index" value="<?php echo $setting['de_include_index'] ?>" id="de_include_index" class="frm_input" size="50">
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="de_include_head">상단 파일</label></th>
-            <td>
-                <?php echo help('입력이 없으면 '.G5_CONTENTS_DIR.'/shop.head.php가 상단 파일로 설정됩니다.<br>상단 파일은 '.G5_CONTENTS_DIR.'/shop.head.php 파일과 동일한 위치에 존재해야 합니다.') ?>
-                <input type="text" name="de_include_head" value="<?php echo $setting['de_include_head'] ?>" id="de_include_head" class="frm_input" size="50">
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="de_include_tail">하단 파일</label></th>
-            <td>
-                <?php echo help('입력이 없으면 '.G5_CONTENTS_DIR.'/shop.tail.php가 하단 파일로 설정됩니다.<br>하단 파일은 '.G5_CONTENTS_DIR.'/shop.tail.php 파일과 동일한 위치에 존재해야 합니다.') ?>
-                <input type="text" name="de_include_tail" value="<?php echo $setting['de_include_tail'] ?>" id="de_include_tail" class="frm_input" size="50">
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="de_root_index_use">루트 index 사용</label></th>
-            <td>
-                <?php echo help('쇼핑몰의 접속경로를 '.G5_CONTENTS_URL.' 에서 '.G5_URL.' 으로 변경하시려면 사용으로 설정해 주십시오.'); ?>
-                <select name="de_root_index_use" id="de_root_index_use">
-                    <option value="0" <?php echo get_selected($setting['de_root_index_use'], 0); ?>>사용안함</option>
-                    <option value="1" <?php echo get_selected($setting['de_root_index_use'], 1); ?>>사용</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="de_contents_layout_use">컨텐츠몰 레이아웃 사용</label></th>
-            <td>
-                <?php echo help('커뮤니티의 레이아웃을 컨텐츠몰과 동일하게 적용하시려면 사용으로 설정해 주십시오.'); ?>
-                <select name="de_contents_layout_use" id="de_contents_layout_use">
-                    <option value="0" <?php echo get_selected($setting['de_contents_layout_use'], 0); ?>>사용안함</option>
-                    <option value="1" <?php echo get_selected($setting['de_contents_layout_use'], 1); ?>>사용</option>
-                </select>
-            </td>
-        </tr>
-
-        </tbody>
-        </table>
-    </div>
-</section>
-
-<?php echo $frm_submit; ?>
-
 <section id="anc_scf_skin">
     <h2 class="h2_frm">스킨설정</h2>
     <?php echo $pg_anchor; ?>
@@ -217,29 +152,13 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
         <tr>
             <th scope="row"><label for="de_contents_skin">PC용 스킨</label></th>
             <td colspan="3">
-                <select name="de_contents_skin" id="de_contents_skin" required class="required">
-                <?php
-                $arr = get_skin_dir('contents');
-                for ($i=0; $i<count($arr); $i++) {
-                    if ($i == 0) echo "<option value=\"\">선택</option>";
-                    echo "<option value=\"".$arr[$i]."\"".get_selected($setting['de_contents_skin'], $arr[$i]).">".$arr[$i]."</option>\n";
-                }
-                ?>
-                </select>
+                <?php echo get_skin_select('contents', 'de_contents_skin', 'de_contents_skin', $setting['de_contents_skin'], 'required'); ?>
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="de_contents_mobile_skin">모바일용 스킨</label></th>
             <td colspan="3">
-                <select name="de_contents_mobile_skin" id="de_contents_mobile_skin" required class="required">
-                <?php
-                $arr = get_skin_dir('contents', G5_MOBILE_PATH.'/'.G5_SKIN_DIR);
-                for ($i=0; $i<count($arr); $i++) {
-                    if ($i == 0) echo "<option value=\"\">선택</option>";
-                    echo "<option value=\"".$arr[$i]."\"".get_selected($setting['de_contents_mobile_skin'], $arr[$i]).">".$arr[$i]."</option>\n";
-                }
-                ?>
-                </select>
+                <?php echo get_mobile_skin_select('contents', 'de_contents_mobile_skin', 'de_contents_mobile_skin', $setting['de_contents_mobile_skin'], 'required'); ?>
             </td>
         </tr>
         </tbody>
@@ -247,7 +166,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
     </div>
 </section>
 
-<?php echo $frm_submit; ?>
+<?php echo preg_replace('#</div>$#i', '<button type="button" class="get_contents_skin">테마 스킨설정 가져오기</button></div>', $frm_submit); ?>
 
 <section id="anc_scf_index">
     <h2 class="h2_frm">쇼핑몰 초기화면</h2>
@@ -348,7 +267,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
     </div>
 </section>
 
-<?php echo $frm_submit; ?>
+<?php echo preg_replace('#</div>$#i', '<button type="button" class="contents_pc_index">테마설정 가져오기</button></div>', $frm_submit); ?>
 
 <section id="anc_mscf_index">
     <h2 class="h2_frm">모바일 쇼핑몰 초기화면 설정</h2>
@@ -448,7 +367,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
     </div>
 </section>
 
-<?php echo $frm_submit; ?>
+<?php echo preg_replace('#</div>$#i', '<button type="button" class="contents_mobile_index">테마설정 가져오기</button></div>', $frm_submit); ?>
 
 <section id ="anc_scf_payment">
     <h2 class="h2_frm">결제설정</h2>
@@ -1048,7 +967,7 @@ $frm_submit = '<div class="btn_confirm01 btn_confirm">
     </div>
 </section>
 
-<?php echo $frm_submit; ?>
+<?php echo preg_replace('#</div>$#i', '<button type="button" class="contents_etc">테마설정 가져오기</button></div>', $frm_submit); ?>
 
 <?php if (file_exists($logo_img) || file_exists($logo_img2) || file_exists($mobile_logo_img) || file_exists($mobile_logo_img2)) { ?>
 <script>
@@ -1308,7 +1227,74 @@ $(function() {
         } else {
             $cf_cardtest_btn.text("테스트결제 팁 더보기");
         }
-    })
+    });
+
+    $(".get_contents_skin").on("click", function() {
+        if(!confirm("현재 테마의 컨텐츠몰 스킨 설정을 적용하시겠습니까?"))
+            return false;
+
+        $.ajax({
+            type: "POST",
+            url: "../theme_config_load.php",
+            cache: false,
+            async: false,
+            data: { type: "contents_skin" },
+            dataType: "json",
+            success: function(data) {
+                if(data.error) {
+                    alert(data.error);
+                    return false;
+                }
+
+                var field = Array('de_contents_skin', 'de_contents_mobile_skin');
+                var count = field.length;
+                var key;
+
+                for(i=0; i<count; i++) {
+                    key = field[i];
+
+                    if(data[key] != undefined && data[key] != "")
+                        $("select[name="+key+"]").val(data[key]);
+                }
+            }
+        });
+    });
+
+    $(".contents_pc_index, .contents_mobile_index, .contents_etc").on("click", function() {
+        if(!confirm("현재 테마의 스킨, 이미지 사이즈 등의 설정을 적용하시겠습니까?"))
+            return false;
+
+        var type = $(this).attr("class");
+        var $el;
+
+        $.ajax({
+            type: "POST",
+            url: "../theme_config_load.php",
+            cache: false,
+            async: false,
+            data: { type: type },
+            dataType: "json",
+            success: function(data) {
+                if(data.error) {
+                    alert(data.error);
+                    return false;
+                }
+
+                $.each(data, function(key, val) {
+                    if(key == "error")
+                        return true;
+
+                    $el = $("#"+key);
+
+                    if($el[0].type == "checkbox") {
+                        $el.attr("checked", parseInt(val) ? true : false);
+                        return true;
+                    }
+                    $el.val(val);
+                });
+            }
+        });
+    });
 });
 </script>
 

@@ -1,6 +1,6 @@
 $(function(){
     // 모두선택
-    $("#chk_opt_all").live("click", function() {
+    $(document).on("click", "#chk_opt_all", function() {
         if($(this).is(":checked"))
             $("input[name^=io_chk]").attr("checked", true);
         else
@@ -10,12 +10,12 @@ $(function(){
     });
 
     // 선택시 가격 계산
-    $("input[name^=io_chk]").live("click", function() {
+    $(document).on("click", "input[name^=io_chk]", function() {
         price_calculate();
     });
 
     // 수량변경
-    $("button.change_qty").live("click", function() {
+    $(document).on("click", "button.change_qty", function() {
         var act = $.trim($(this).text());
         var $qty = $(this).closest("tr").find("input[name^=ct_qty]");
         var qty = parseInt($qty.val().replace(/[^0-9]/g, ""));
@@ -40,7 +40,7 @@ $(function(){
     });
 
     // 수량입력
-    $("input[name^=ct_qty]").live("keyup", function() {
+    $(document).on("keyup", "input[name^=ct_qty]", function() {
         var qty = parseInt($(this).val().replace(/[^0-9]/g, ""));
         if(isNaN(qty)) {
             alert("수량은 숫자만 입력해 주십시오.");

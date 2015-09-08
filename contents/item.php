@@ -60,7 +60,10 @@ $skin_dir = G5_CONTENTS_SKIN_PATH;
 $ca_dir_check = true;
 
 if($it['it_skin']) {
-    $skin_dir = G5_PATH.'/'.G5_SKIN_DIR.'/contents/'.$it['it_skin'];
+    if(preg_match('#^theme/(.+)$#', $it['it_skin'], $match))
+        $skin_dir = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/contents/'.$match[1];
+    else
+        $skin_dir = G5_PATH.'/'.G5_SKIN_DIR.'/contents/'.$it['it_skin'];
 
     if(is_dir($skin_dir)) {
         $form_skin_file = $skin_dir.'/item.form.skin.php';
@@ -72,7 +75,10 @@ if($it['it_skin']) {
 
 if($ca_dir_check) {
     if($ca['ca_skin_dir']) {
-        $skin_dir = G5_PATH.'/'.G5_SKIN_DIR.'/contents/'.$ca['ca_skin_dir'];
+        if(preg_match('#^theme/(.+)$#', $ca['ca_skin_dir'], $match))
+            $skin_dir = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/contents/'.$match[1];
+        else
+            $skin_dir = G5_PATH.'/'.G5_SKIN_DIR.'/contents/'.$ca['ca_skin_dir'];
 
         if(is_dir($skin_dir)) {
             $form_skin_file = $skin_dir.'/item.form.skin.php';
@@ -93,7 +99,7 @@ $g5['title'] = $it['ca_name'].' 컨텐츠 리스트';
 if ($ca['ca_include_head'])
     @include_once($ca['ca_include_head']);
 else
-    include_once('./_head.php');
+    include_once(G5_CONTENTS_PATH.'/_head.php');
 ?>
 <div id="cct_hd">
         <?php
@@ -235,5 +241,5 @@ echo conv_content($it['it_tail_html'], 1);
 if ($ca['ca_include_tail'])
     @include_once($ca['ca_include_tail']);
 else
-    include_once('./_tail.php');
+    include_once(G5_CONTENTS_PATH.'/_tail.php');
 ?>

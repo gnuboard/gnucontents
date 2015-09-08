@@ -1,6 +1,11 @@
 <?php
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
+if(defined('G5_THEME_PATH')) {
+    require_once(G5_THEME_MCONTENTS_PATH.'/contents.tail.php');
+    return;
+}
+
 $admin = get_admin("super");
 
 // 사용자 화면 우측과 하단을 담당하는 페이지입니다.
@@ -15,7 +20,7 @@ $admin = get_admin("super");
 
 <div id="ft">
     <div id="ft_cont">
-        <a href="<?php echo $setting['de_root_index_use'] ? G5_URL : G5_CONTENTS_URL; ?>/" id="ft_logo"><img src="<?php echo G5_DATA_URL; ?>/common/cm_logo_img2" alt="처음으로"></a>
+        <a href="<?php echo (defined('G5_COMMUNITY_USE') && G5_COMMUNITY_USE) ? G5_URL : G5_CONTENTS_URL; ?>/" id="ft_logo"><img src="<?php echo G5_DATA_URL; ?>/common/cm_logo_img2" alt="처음으로"></a>
         <div id="ft_info">
             <p>
                 <span><?php echo $setting['de_admin_company_addr']; ?></span><br>

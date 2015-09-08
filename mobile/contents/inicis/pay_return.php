@@ -17,7 +17,7 @@ if(isset($data['cs_id']) && $data['cs_id']) {
     $page_return_url  = G5_CONTENTS_URL.'/cashform.php';
 } else {
     $order_action_url = G5_HTTPS_MCONTENTS_URL.'/orderformupdate.php';
-    $page_return_url  = G5_SHOP_URL.'/orderform.php';
+    $page_return_url  = G5_CONTENTS_URL.'/orderform.php';
     if($_SESSION['ss_cm_direct'])
         $page_return_url .= '?sw_direct=1';
 }
@@ -62,7 +62,7 @@ echo '</form>'.PHP_EOL;
 ?>
 
 <div id="pay_working" style="display:none;">
-     <span style="display:block; text-align:center;margin-top:120px"><img src="<?php echo G5_MOBILE_URL; ?>/shop/img/loading.gif" alt=""></span>
+     <span style="display:block; text-align:center;margin-top:120px"><img src="<?php echo G5_CONTENTS_URL; ?>/img/loading.gif" alt=""></span>
     <span style="display:block; text-align:center;margin-top:10px; font-size:14px">주문완료 중입니다. 잠시만 기다려 주십시오.</span>
 </div>
 

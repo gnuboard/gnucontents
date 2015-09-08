@@ -193,7 +193,7 @@ if($PGIP == "211.219.96.165" || $PGIP == "118.129.210.25")	//PG에서 보냈는�
 
 function writeLog($msg)
 {
-    $file = G5_SHOP_PATH."/inicis/log/noti_input_".date("Ymd").".log";
+    $file = G5_CONTENTS_PATH."/inicis/log/noti_input_".date("Ymd").".log";
 
     if(!($fp = fopen($path.$file, "a+"))) return 0;
 

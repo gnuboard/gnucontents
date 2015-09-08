@@ -1,6 +1,11 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
+if(defined('G5_THEME_PATH')) {
+    require_once(G5_THEME_PATH.'/head.php');
+    return;
+}
+
 include_once(G5_PATH.'/head.sub.php');
 include_once(G5_LIB_PATH.'/latest.lib.php');
 include_once(G5_LIB_PATH.'/outlogin.lib.php');
@@ -156,7 +161,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
             <li><a href="<?php echo G5_BBS_URL ?>/register.php" id="snb_join">회원가입</a></li>
             <li><a href="<?php echo G5_BBS_URL ?>/login.php" id="snb_login">로그인</a></li>
             <?php } ?>
-             <?php if (defined('G5_USE_CONTENTS') && G5_USE_CONTENTS) { ?>
+            <?php if (defined('G5_USE_CONTENTS') && G5_USE_CONTENTS) { ?>
             <li><a href="<?php echo G5_CONTENTS_URL ?>/">컨텐츠몰</a></li>
             <?php } ?>
         </ul>
